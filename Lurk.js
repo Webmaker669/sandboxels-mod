@@ -1,27 +1,30 @@
 runAfterLoad(function() {
-    // Check if 'elements' is available
+    // Check if the 'elements' API is available
     if (typeof elements === "undefined") {
         console.error("Elements API is not available.");
         return;
     }
 
-    // Adding the Lurk element
+    // Define the Lurk element correctly
     elements.lurk = {
-        color: "#f4c542", // Color of Lurk
-        behavior: behaviors.LIQUID, // Lurk behaves as a liquid
-        category: "liquids", // It shows up under the liquids category
-        viscosity: 100000, // It’s a very viscous liquid
-        state: "liquid", // Liquid state
-        density: 1420, // The density of Lurk
+        color: "#f4c542", // Lurk's color (yellow-ish)
+        behavior: behaviors.LIQUID, // It behaves like a liquid
+        category: "liquids", // It will be under "liquids" in the game
+        viscosity: 100000, // A very thick liquid
+        state: "liquid", // Lurk is a liquid
+        density: 1420, // Lurk's density
     };
 
-    // Log to confirm Lurk is added
-    console.log("Lurk element has been added!");
-
-    // Check if the element has been registered correctly
+    // Log the addition of the Lurk element
+    console.log("Lurk element added!");
+    
+    // Confirm the element registration
     if (elements.lurk) {
-        console.log("Lurk element registered successfully.");
+        console.log("✅ Lurk element registered successfully.");
     } else {
-        console.error("Lurk element failed to register.");
+        console.error("❌ Lurk element failed to register.");
     }
+
+    // Test the element by manually creating a pixel of Lurk
+    createPixel("lurk", 50, 50);
 });
