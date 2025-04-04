@@ -1,11 +1,11 @@
 runAfterLoad(function() {
-    // Confirm Sandboxels is ready
+    // Check if elements & behaviors are available
     if (typeof elements === "undefined" || typeof behaviors === "undefined") {
-        console.error("Sandboxels API not available");
+        console.error("Sandboxels API is not available yet.");
         return;
     }
 
-    // Define Lurk
+    // Define Lurk element
     elements.lurk = {
         color: "#f4c542",
         behavior: behaviors.LIQUID,
@@ -22,7 +22,7 @@ runAfterLoad(function() {
         }
     };
 
-    // Add to condiment list
+    // Add Lurk to eLists.CONDIMENT if it doesn’t exist
     if (!eLists.CONDIMENT) {
         eLists.CONDIMENT = [];
     }
@@ -30,5 +30,10 @@ runAfterLoad(function() {
         eLists.CONDIMENT.push("lurk");
     }
 
-    console.log("✅ Lurk element fully loaded.");
+    // Check if Lurk is defined and properly loaded
+    if (elements.lurk) {
+        console.log("✅ Lurk element loaded successfully.");
+    } else {
+        console.error("❌ Lurk element failed to load.");
+    }
 });
