@@ -1,39 +1,40 @@
-runAfterLoad(function() {
-    // Check if elements & behaviors are available
-    if (typeof elements === "undefined" || typeof behaviors === "undefined") {
-        console.error("Sandboxels API is not available yet.");
-        return;
-    }
-
-    // Define Lurk element
-    elements.lurk = {
-        color: "#f4c542",
-        behavior: behaviors.LIQUID,
-        category: "liquids",
-        viscosity: 100000,
-        state: "liquid",
-        density: 1420,
-        reactions: {
-            "bleach": {
-                "elem1": "explosion",
-                "elem2": null,
-                "chance": 1
-            }
+// Adding Lurk element:
+elements.lurk = {
+    color: "#f4c542", // Yellow color for Lurk
+    behavior: behaviors.LIQUID, // Lurk behaves like a liquid
+    category: "liquids", // It will show under the "liquids" category
+    viscosity: 100000, // High viscosity
+    state: "liquid", // It’s a liquid state
+    density: 1420, // Density of the element
+    reactions: {
+        "bleach": { // Reaction with bleach
+            "elem1": "explosion", // Lurk turns into an explosion when it comes in contact with bleach
+            "elem2": null, // No second element in this reaction
+            "chance": 1 // 100% chance of the reaction
         }
-    };
+    }
+};
 
-    // Add Lurk to eLists.CONDIMENT if it doesn’t exist
-    if (!eLists.CONDIMENT) {
-        eLists.CONDIMENT = [];
-    }
-    if (!eLists.CONDIMENT.includes("lurk")) {
-        eLists.CONDIMENT.push("lurk");
-    }
+// Create a new tool to interact with Lurk:
+elements.lurk_exploder = {
+    color: "#ff0000", // Red color for the tool
+    tool: function(pixel) {
+        if (pixel.element == "lurk") { // If the pixel is Lurk
+            pixel.element = "explosion"; // It turns into an explosion
+        }
+    },
+    category: "tools", // Categorized under tools
+};
 
-    // Check if Lurk is defined and properly loaded
-    if (elements.lurk) {
-        console.log("✅ Lurk element loaded successfully.");
-    } else {
-        console.error("❌ Lurk element failed to load.");
-    }
+// Add Lurk to eLists.CONDIMENT (or any list you'd like)
+if (!eLists.CONDIMENT) { // Ensure the list exists
+    eLists.CONDIMENT = [];
+}
+if (!eLists.CONDIMENT.includes("lurk")) { // Check if Lurk is already in the list
+    eLists.CONDIMENT.push("lurk"); // Add Lurk to the list
+}
+
+// Log when the mod is fully loaded:
+runAfterLoad(function() {
+    console.log("Lurk mod loaded successfully ✅");
 });
