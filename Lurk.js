@@ -1,6 +1,11 @@
-// Lurk.js - Explodes on bleach contact
 runAfterLoad(function() {
-    // Define Lurk element
+    // Confirm Sandboxels is ready
+    if (typeof elements === "undefined" || typeof behaviors === "undefined") {
+        console.error("Sandboxels API not available");
+        return;
+    }
+
+    // Define Lurk
     elements.lurk = {
         color: "#f4c542",
         behavior: behaviors.LIQUID,
@@ -17,7 +22,7 @@ runAfterLoad(function() {
         }
     };
 
-    // Add Lurk to eLists.CONDIMENT
+    // Add to condiment list
     if (!eLists.CONDIMENT) {
         eLists.CONDIMENT = [];
     }
@@ -25,5 +30,5 @@ runAfterLoad(function() {
         eLists.CONDIMENT.push("lurk");
     }
 
-    console.log("Lurk mod loaded ✅");
+    console.log("✅ Lurk element fully loaded.");
 });
